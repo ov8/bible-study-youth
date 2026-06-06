@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Why Read the Bible · Bible 101</title>
+<title>What Is the Bible? · Bible 101</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -48,6 +48,11 @@
   .accent{color:var(--accent)}
   .fact{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1rem;background:#eef4ff;border:1px solid #dbe7ff;border-radius:999px;font-size:.85rem;color:#1e40af;margin-top:2rem;font-weight:500}
   .fact b{font-weight:600}
+
+  .qr-card{display:inline-flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1rem 1.25rem;margin-top:2rem;text-align:left;text-decoration:none;color:var(--ink)}
+  .qr-card img{width:92px;height:92px;border-radius:10px;border:1px solid var(--line);background:#fff}
+  .qr-card strong{display:block;font-size:.95rem;margin-bottom:.25rem;color:var(--ink)}
+  .qr-card span{display:block;font-size:.85rem;line-height:1.35;color:#475569;max-width:28ch}
   /* timer */
   .timer-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1100px;width:100%;margin:1.5rem auto 0}
   @media(max-width:780px){.timer-wrap{grid-template-columns:1fr}}
@@ -87,8 +92,12 @@
   <!-- 1 Title -->
   <section class="slide center">
     <div class="kicker">Youth Fellowship · Tonight</div>
-    <h1>Why read<br/>the <span class="accent">Bible</span>?</h1>
-    <p class="lead">A short tour of the book that's shaped more lives than any other, and why it's still worth opening in 2026.</p>
+    <h1>What is<br/>the <span class="accent">Bible</span>?</h1>
+    <p class="lead">A short, honest, and interactive tour of the big story of Scripture, and why it still matters in 2026.</p>
+    <a class="qr-card" href="https://bibleproject.com/videos/how-to-read-the-bible/" target="_blank" rel="noopener" aria-label="Open the BibleProject How to Read the Bible series">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fbibleproject.com%2Fvideos%2Fhow-to-read-the-bible%2F" alt="QR code for the BibleProject How to Read the Bible series" />
+      <span><strong>Missed a session?</strong>Scan this for the BibleProject How to Read the Bible series.</span>
+    </a>
   </section>
 
   <!-- 2 Honest start -->
@@ -254,36 +263,31 @@
     <h2>How to Read the Bible.</h2>
     <p class="lead">A whole curriculum of short animated videos. Pick one a week. Tap a card to open.</p>
     <div class="grid">
-  <a class="card" href="https://bibleproject.com/videos/what-is-the-bible/" target="_blank" rel="noopener">
-    <h3>What Is the Bible?</h3>
-    <p>The Bible is a unified story that leads to Jesus.</p>
-  </a>
-
-  <a class="card" href="https://bibleproject.com/videos/the-story-of-the-bible/" target="_blank" rel="noopener">
-    <h3>The Story of the Bible</h3>
-    <p>Creation → Fall → Israel → Jesus → Church → New Creation.</p>
-  </a>
-
-  <a class="card" href="https://bibleproject.com/videos/how-to-read-gospel/" target="_blank" rel="noopener">
-    <h3>How to Read the Gospels</h3>
-    <p>Learn how Matthew, Mark, Luke, and John tell the story of Jesus.</p>
-  </a>
-
-  <a class="card" href="https://bibleproject.com/videos/literary-styles/" target="_blank" rel="noopener">
-    <h3>Literary Styles</h3>
-    <p>Narrative, poetry, prophecy, and more.</p>
-  </a>
-
-  <a class="card" href="https://bibleproject.com/videos/how-to-read-the-bible/" target="_blank" rel="noopener">
-    <h3>How to Read the Bible Series</h3>
-    <p>A complete video series on reading Scripture well.</p>
-  </a>
-
-  <a class="card" href="https://bibleproject.com/explore/" target="_blank" rel="noopener">
-    <h3>Explore More →</h3>
-    <p>Videos, podcasts, reading plans, and study resources.</p>
-  </a>
-</div>
+      <a class="card" href="https://bibleproject.com/videos/what-is-the-bible/" target="_blank" rel="noopener">
+        <h3>What Is the Bible?</h3>
+        <p>The Bible is a unified story that leads to Jesus.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/the-story-of-the-bible/" target="_blank" rel="noopener">
+        <h3>The Story of the Bible</h3>
+        <p>Creation → Fall → Israel → Jesus → Church → New Creation.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/how-to-read-gospel/" target="_blank" rel="noopener">
+        <h3>How to Read the Gospels</h3>
+        <p>Learn how Matthew, Mark, Luke, and John tell the story of Jesus.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/literary-styles/" target="_blank" rel="noopener">
+        <h3>Literary Styles</h3>
+        <p>Narrative, poetry, prophecy, and more.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/how-to-read-the-bible/" target="_blank" rel="noopener">
+        <h3>How to Read the Bible Series</h3>
+        <p>A complete video series on reading Scripture well.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/explore/" target="_blank" rel="noopener">
+        <h3>Explore More →</h3>
+        <p>Videos, podcasts, reading plans, and study resources.</p>
+      </a>
+    </div>
     <span class="fact">✦ <b>Fun fact:</b> BibleProject videos have been watched over 500 million times in 60+ languages.</span>
   </section>
 
@@ -318,6 +322,10 @@
     <div class="kicker">Tonight's challenge</div>
     <h1>Read one chapter.<br/>Come back next week.<br/><span class="accent">Share what stuck.</span></h1>
     <p class="lead">Pick a topic. Find one verse or passage. Tell us next week what it said to you, in your own words. We'll learn from each other.</p>
+    <a class="qr-card" href="https://bibleproject.com/videos/how-to-read-the-bible/" target="_blank" rel="noopener" aria-label="Open the BibleProject How to Read the Bible series">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fbibleproject.com%2Fvideos%2Fhow-to-read-the-bible%2F" alt="QR code for the BibleProject How to Read the Bible series" />
+      <span><strong>Keep going this week.</strong>Scan this for short BibleProject videos you can watch at home.</span>
+    </a>
   </section>
 
 </div>
