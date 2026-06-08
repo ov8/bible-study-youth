@@ -108,20 +108,8 @@
   .nav button{background:var(--surface);border:1px solid var(--line);color:var(--ink);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:grid;place-items:center;transition:.2s}
   .nav button:hover{border-color:var(--accent);color:var(--accent)}
   .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:.6rem;vertical-align:middle}
-  .home-link{
-  color:var(--muted);
-  text-decoration:none;
-  pointer-events:auto;
-  transition:.2s;
-}
-
-.home-link:hover{
-  color:var(--accent);
-}
-
-.home-link .dot{
-  margin-right:.6rem;
-}
+  .home-link{color:var(--muted);text-decoration:none;pointer-events:auto;transition:.2s}
+  .home-link:hover{color:var(--accent)}
   @media print{.chrome,.nav,.progress{display:none}.slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;height:100vh}}
 </style>
 </head>
@@ -207,6 +195,12 @@
     <p class="lead" style="margin-top:1.5rem;">Before sin entered the world, God gave humans meaningful work. Work was part of God’s good creation.</p>
   </section>
 
+  <section class="slide center">
+    <div class="kicker">Purpose</div>
+    <blockquote>"For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them."<cite>Ephesians 2:10</cite></blockquote>
+    <p class="lead" style="margin-top:1.5rem;">Your gifts are not random. God can use your interests, skills, experiences, and personality to bless other people.</p>
+  </section>
+
   <section class="slide scroll-slide">
     <div class="kicker">Real life</div>
     <h2>What kind of work feels interesting to you?</h2>
@@ -272,6 +266,12 @@
     <div class="grid"><div class="card"><h3>Money can help</h3><p>Feed people, support family, give generously, build something good.</p></div><div class="card"><h3>Money can hurt</h3><p>Become an idol, control our choices, or make us forget people.</p></div></div>
   </section>
 
+  <section class="slide center">
+    <div class="kicker">Money and the heart</div>
+    <blockquote>"For where your treasure is, there your heart will be also."<cite>Matthew 6:21</cite></blockquote>
+    <p class="lead" style="margin-top:1.5rem;">Money is not just about spending. It can reveal what we value, what we trust, and what we are chasing.</p>
+  </section>
+
   <section class="slide scroll-slide">
     <div class="kicker">Team activity · phones allowed</div>
     <h2>Phone Bible Hunt.</h2>
@@ -313,16 +313,13 @@
     <div class="kicker">This week’s challenge</div>
     <h1>Watch one BibleProject video.<br/><span class="accent">Share one thing next class.</span></h1>
     <p class="lead">Choose any video. Come ready to share what you learned, what surprised you, or what confused you.</p>
+    <blockquote style="margin-top:2rem;">"Trust in the Lord with all your heart, and do not lean on your own understanding."<cite>Proverbs 3:5</cite></blockquote>
     <a class="qr-card" href="https://ov8.github.io/bible-study-youth/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fov8.github.io%2Fbible-study-youth%2F" alt="Youth Fellowship Resources"><span><strong>Keep learning this week.</strong>Scan for Youth Fellowship slides and past sessions.<br><br>Now posted: June 5 and June 12.</span></a>
   </section>
 </div>
 
-<div class="chrome">
-  <a class="home-link" href="https://ov8.github.io/bible-study-youth/">
-    <span class="dot"></span>Youth Fellowship
-  </a>
-  <span id="counter">01 / 17</span>
-</div>
+<div class="chrome"><a class="home-link" href="https://ov8.github.io/bible-study-youth/"><span class="dot"></span>← All Sessions</a><span id="counter">01 / 19</span></div>
+<div class="nav"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button></div>
 <script>
   const slides = document.querySelectorAll('.slide');
   const total = slides.length;
