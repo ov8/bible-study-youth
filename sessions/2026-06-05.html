@@ -79,20 +79,6 @@
   .nav button{background:var(--surface);border:1px solid var(--line);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:grid;place-items:center;transition:.2s}
   .nav button:hover{border-color:var(--accent);color:var(--accent)}
   .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:.6rem;vertical-align:middle}
-  .home-link{
-  color:var(--muted);
-  text-decoration:none;
-  pointer-events:auto;
-  transition:.2s;
-}
-
-.home-link:hover{
-  color:var(--accent);
-}
-
-.home-link .dot{
-  margin-right:.6rem;
-}
   @media print{
     .chrome,.nav,.progress{display:none}
     .slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;height:100vh}
@@ -108,23 +94,6 @@
     <div class="kicker">Youth Fellowship · Tonight</div>
     <h1>What is<br/>the <span class="accent">Bible</span>?</h1>
     <p class="lead">A short, honest, and interactive tour of the big story of Scripture, and why it still matters in 2026.</p>
-<a class="qr-card"
-   href="https://ov8.github.io/bible-study-youth/"
-   target="_blank"
-   rel="noopener">
-
-  <img
-    src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fov8.github.io%2Fbible-study-youth%2F"
-    alt="Youth Fellowship Resources">
-
-  <span>
-    <strong>Missed a session?</strong>
-    Scan for tonight's slides, resources, and past Youth Fellowship sessions.
-    <br><br>
-    Latest session: June 5, 2026 · Bible 101
-  </span>
-
-</a>
   </section>
 
   <!-- 2 Honest start -->
@@ -371,9 +340,7 @@
 </div>
 
 <div class="chrome">
-  <a class="home-link" href="https://ov8.github.io/bible-study-youth/">
-    <span class="dot"></span>Youth Fellowship
-  </a>
+  <span><span class="dot"></span>Youth Fellowship</span>
   <span id="counter">01 / 17</span>
 </div>
 
