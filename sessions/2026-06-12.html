@@ -108,6 +108,20 @@
   .nav button{background:var(--surface);border:1px solid var(--line);color:var(--ink);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:grid;place-items:center;transition:.2s}
   .nav button:hover{border-color:var(--accent);color:var(--accent)}
   .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:.6rem;vertical-align:middle}
+  .home-link{
+  color:var(--muted);
+  text-decoration:none;
+  pointer-events:auto;
+  transition:.2s;
+}
+
+.home-link:hover{
+  color:var(--accent);
+}
+
+.home-link .dot{
+  margin-right:.6rem;
+}
   @media print{.chrome,.nav,.progress{display:none}.slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;height:100vh}}
 </style>
 </head>
