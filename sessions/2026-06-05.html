@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>What Is the Bible? · Bible 101</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafbfc;
+    --surface:#ffffff;
+    --line:#e8ecf1;
+    --muted:#94a3b8;
+    --ink:#0f172a;
+    --accent:#3b82f6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .deck{position:relative;height:100vh;overflow:hidden}
+  .slide{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(40px,7vw,120px);
+    opacity:0;pointer-events:none;transform:translateY(8px);
+    transition:opacity .5s ease, transform .5s ease;
+    overflow-y:auto;
+  }
+  .slide.active{opacity:1;pointer-events:auto;transform:none}
+  .kicker{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;font-weight:500}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(2.4rem,6.2vw,5.2rem);line-height:1.02;letter-spacing:-.02em;margin-bottom:1.25rem}
+  h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;letter-spacing:-.015em;margin-bottom:1rem}
+  p,li{font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.6;color:#334155;max-width:62ch}
+  .lead{font-size:clamp(1.1rem,1.6vw,1.45rem);color:#475569;max-width:54ch}
+  ul.counted{list-style:none;counter-reset:item;max-width:64ch}
+  ul.counted li{padding:.85rem 0;border-top:1px solid var(--line);display:flex;gap:1rem;align-items:baseline}
+  ul.counted li:last-child{border-bottom:1px solid var(--line)}
+  ul.counted li::before{content:counter(item,decimal-leading-zero);counter-increment:item;color:var(--accent);font-variant-numeric:tabular-nums;font-size:.8rem;font-weight:500;min-width:2.2rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:1.75rem;max-width:1100px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.4rem}
+  .card h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.2rem;margin-bottom:.5rem}
+  .card p{font-size:.95rem;color:#475569}
+  blockquote{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.4rem,2.5vw,2.1rem);line-height:1.35;letter-spacing:-.01em;max-width:24ch;color:var(--ink)}
+  blockquote cite{display:block;margin-top:1.25rem;font-family:'Inter',sans-serif;font-style:normal;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .center{align-items:center;text-align:center}
+  .center .lead, .center p{margin-left:auto;margin-right:auto}
+  .accent{color:var(--accent)}
+  .fact{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1rem;background:#eef4ff;border:1px solid #dbe7ff;border-radius:999px;font-size:.85rem;color:#1e40af;margin-top:2rem;font-weight:500}
+  .fact b{font-weight:600}
+
+  .qr-card{display:inline-flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1rem 1.25rem;margin-top:2rem;text-align:left;text-decoration:none;color:var(--ink)}
+  .qr-card img{width:92px;height:92px;border-radius:10px;border:1px solid var(--line);background:#fff}
+  .qr-card strong{display:block;font-size:.95rem;margin-bottom:.25rem;color:var(--ink)}
+  .qr-card span{display:block;font-size:.85rem;line-height:1.35;color:#475569;max-width:28ch}
+  /* timer */
+  .timer-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1100px;width:100%;margin:1.5rem auto 0}
+  @media(max-width:780px){.timer-wrap{grid-template-columns:1fr}}
+  .timer{font-family:'Fraunces',serif;font-variant-numeric:tabular-nums;font-size:clamp(5rem,14vw,11rem);line-height:1;letter-spacing:-.04em;color:var(--ink)}
+  .timer.warn{color:#dc2626}
+  .timer-controls{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.25rem;border-radius:10px;font:inherit;font-weight:500;font-size:.95rem;cursor:pointer;transition:.2s}
+  .btn:hover{background:#2563eb}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .counter-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.5rem}
+  .counter-box label{display:block;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+  .counter-display{font-family:'Fraunces',serif;font-size:3rem;line-height:1;margin:.5rem 0 1rem}
+  .counter-display span{color:var(--accent)}
+  .count-btns{display:flex;gap:.5rem}
+  /* topic chips */
+  .topics{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;max-width:900px}
+  .chip{background:var(--surface);border:1px solid var(--line);padding:.6rem 1.1rem;border-radius:999px;font-size:.95rem;color:#334155;cursor:default;transition:.2s}
+  .chip:hover{border-color:var(--accent);color:var(--accent)}
+  /* chrome */
+  .chrome{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);pointer-events:none;z-index:10}
+  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;transition:width .4s ease;z-index:11}
+  .nav{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:12}
+  .nav button{background:var(--surface);border:1px solid var(--line);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:grid;place-items:center;transition:.2s}
+  .nav button:hover{border-color:var(--accent);color:var(--accent)}
+  .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:.6rem;vertical-align:middle}
+  @media print{
+    .chrome,.nav,.progress{display:none}
+    .slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;height:100vh}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 Title -->
+  <section class="slide center">
+    <div class="kicker">Youth Fellowship · Tonight</div>
+    <h1>What is<br/>the <span class="accent">Bible</span>?</h1>
+    <p class="lead">A short, honest, and interactive tour of the big story of Scripture, and why it still matters in 2026.</p>
+<a class="qr-card"
+   href="https://ov8.github.io/bible-study-youth/"
+   target="_blank"
+   rel="noopener">
+
+  <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fov8.github.io%2Fbible-study-youth%2F"
+    alt="Youth Fellowship Resources">
+
+  <span>
+    <strong>Missed a session?</strong>
+    Scan for tonight's slides, resources, and past Youth Fellowship sessions.
+    <br><br>
+    Latest session: June 5, 2026 · Bible 101
+  </span>
+
+</a>
+  </section>
+
+  <!-- 2 Honest start -->
+  <section class="slide">
+    <div class="kicker">Let's start honest</div>
+    <h2>Be real with yourself for a second.</h2>
+    <p class="lead">When was the last time you opened a Bible because you actually wanted to, not because someone told you to?</p>
+    <span class="fact">✦ <b>Fun fact:</b> The Bible is the most printed book in history. Over 5 billion copies.</span>
+  </section>
+
+  <!-- 3 Quote -->
+  <section class="slide center">
+    <blockquote>
+      "Your word is a lamp for my feet, a light on my path."
+      <cite>Psalm 119:105</cite>
+    </blockquote>
+  </section>
+
+  <!-- 4 Why 5 reasons -->
+  <section class="slide">
+    <div class="kicker">Part One · Why</div>
+    <h2>Five reasons to actually read it.</h2>
+    <ul class="counted">
+      <li><span>It's how we hear God speak. Not in mystical feelings, but in words we can read and re-read.</span></li>
+      <li><span>It tells us who we are: loved, broken, and being made new.</span></li>
+      <li><span>It rewires how we think, slowly replacing anxiety, comparison, and shame with truth.</span></li>
+      <li><span>It gives us Jesus. Every page points to him.</span></li>
+      <li><span>It changes how we live, and how we love the people around us.</span></li>
+    </ul>
+  </section>
+
+  <!-- 5 What it isn't -->
+  <section class="slide">
+    <div class="kicker">What it isn't</div>
+    <h2>The Bible is not…</h2>
+    <div class="grid">
+      <div class="card"><h3>A rulebook</h3><p>It contains commands, but it's a story before it's a list.</p></div>
+      <div class="card"><h3>A horoscope</h3><p>Don't flip and point. Read it in context.</p></div>
+      <div class="card"><h3>A history textbook</h3><p>It's historical, but written to form you, not just inform you.</p></div>
+      <div class="card"><h3>Boring</h3><p>Promise. Try the right book first.</p></div>
+    </div>
+  </section>
+
+  <!-- 6 Section break Bible 101 -->
+  <section class="slide center">
+    <div class="kicker">Part Two</div>
+    <h1>Bible <span class="accent">101</span></h1>
+    <p class="lead">A 60 second overview of what's actually inside.</p>
+  </section>
+
+  <!-- 7 Stats -->
+  <section class="slide">
+    <h2>One book. Sort of.</h2>
+    <div class="grid">
+      <div class="card"><h3>66 books</h3><p>39 Old Testament · 27 New Testament</p></div>
+      <div class="card"><h3>40+ authors</h3><p>Kings, fishermen, doctors, shepherds</p></div>
+      <div class="card"><h3>~1,500 years</h3><p>Written across three continents</p></div>
+      <div class="card"><h3>One story</h3><p>God rescuing his people through Jesus</p></div>
+    </div>
+    <span class="fact">✦ <b>Fun fact:</b> The shortest verse in the Bible is just two words: "Jesus wept." (John 11:35)</span>
+  </section>
+
+  <!-- 8 OT -->
+  <section class="slide">
+    <div class="kicker">How it's organized</div>
+    <h2>Old Testament · 39 books</h2>
+    <ul class="counted">
+      <li><span><b>Law</b> · Genesis to Deuteronomy. Creation, promise, exodus.</span></li>
+      <li><span><b>History</b> · Joshua to Esther. A nation rises and falls.</span></li>
+      <li><span><b>Wisdom &amp; Poetry</b> · Job to Song of Songs. Prayer, poetry, real life.</span></li>
+      <li><span><b>Prophets</b> · Isaiah to Malachi. God speaks. People listen, sort of.</span></li>
+    </ul>
+  </section>
+
+  <!-- 9 NT -->
+  <section class="slide">
+    <div class="kicker">How it's organized</div>
+    <h2>New Testament · 27 books</h2>
+    <ul class="counted">
+      <li><span><b>Gospels</b> · Matthew, Mark, Luke, John. The life of Jesus.</span></li>
+      <li><span><b>Acts</b> · The church begins.</span></li>
+      <li><span><b>Letters</b> · Romans to Jude. How to actually follow Jesus.</span></li>
+      <li><span><b>Revelation</b> · How the story ends. Spoiler: love wins.</span></li>
+    </ul>
+    <span class="fact">✦ <b>Fun fact:</b> The longest book is Psalms (150 chapters). The longest single chapter is Psalm 119.</span>
+  </section>
+
+  <!-- 10 TIMER GAME -->
+  <section class="slide" id="timer-slide">
+    <div class="kicker">Game time</div>
+    <h2>How many books can you name in 60 seconds?</h2>
+    <p class="lead">Shout them out. Someone tap the + button each time a new one is called.</p>
+    <div class="timer-wrap">
+      <div>
+        <div class="timer" id="timer">1:00</div>
+        <div class="timer-controls">
+          <button class="btn" id="t-start">Start</button>
+          <button class="btn ghost" id="t-reset">Reset</button>
+          <button class="btn ghost" id="t-30">30s</button>
+          <button class="btn ghost" id="t-60">60s</button>
+          <button class="btn ghost" id="t-120">2 min</button>
+        </div>
+      </div>
+      <div class="counter-box">
+        <label>Books named</label>
+        <div class="counter-display"><span id="count">0</span> / 66</div>
+        <div class="count-btns">
+          <button class="btn" id="c-plus">+ 1</button>
+          <button class="btn ghost" id="c-minus">−</button>
+          <button class="btn ghost" id="c-reset">Reset</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 Where to start -->
+  <section class="slide">
+    <div class="kicker">If you're new</div>
+    <h2>Start here, not Genesis.</h2>
+    <div class="grid">
+      <div class="card"><h3>John</h3><p>Meet Jesus. Best first stop.</p></div>
+      <div class="card"><h3>Mark</h3><p>Fast paced. Action. 16 chapters.</p></div>
+      <div class="card"><h3>Psalms</h3><p>Honest prayers for every mood.</p></div>
+      <div class="card"><h3>Proverbs</h3><p>One chapter a day. Pure wisdom.</p></div>
+    </div>
+    <span class="fact">✦ <b>Fun fact:</b> Proverbs has 31 chapters. One per day, perfect for a month.</span>
+  </section>
+
+  <!-- 12 How to read -->
+  <section class="slide">
+    <div class="kicker">A simple habit</div>
+    <h2>How to read it well.</h2>
+    <ul class="counted">
+      <li><span><b>Pick a time.</b> Same spot, same moment each day.</span></li>
+      <li><span><b>Start small.</b> 10 minutes. One chapter.</span></li>
+      <li><span><b>Ask three questions:</b> What does it say? What does it mean? What does it ask of me?</span></li>
+      <li><span><b>Pray it.</b> Turn what you read into a conversation.</span></li>
+      <li><span><b>Don't read alone.</b> Talk about it with someone this week.</span></li>
+    </ul>
+  </section>
+
+  <!-- 13 Quote close -->
+  <section class="slide center">
+    <blockquote>
+      "Man shall not live by bread alone, but by every word that comes from the mouth of God."
+      <cite>Matthew 4:4</cite>
+    </blockquote>
+  </section>
+
+  <!-- 14 Video embed -->
+  <section class="slide">
+    <div class="kicker">Watch together · 5 min</div>
+    <h2>What is the Bible?</h2>
+    <p class="lead">A 5 minute explainer from BibleProject. We'll watch one tonight, the rest are yours for the week.</p>
+    <div style="position:relative;width:100%;max-width:960px;aspect-ratio:16/9;margin-top:1.5rem;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000">
+      <iframe src="https://www.youtube.com/embed/ak06MSETeo4" title="What is the Bible?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>
+    </div>
+  </section>
+
+  <!-- 15 Video library -->
+  <section class="slide">
+    <div class="kicker">Free series · BibleProject</div>
+    <h2>How to Read the Bible.</h2>
+    <p class="lead">A whole curriculum of short animated videos. Pick one a week. Tap a card to open.</p>
+    <div class="grid">
+      <a class="card" href="https://bibleproject.com/videos/what-is-the-bible/" target="_blank" rel="noopener">
+        <h3>What Is the Bible?</h3>
+        <p>The Bible is a unified story that leads to Jesus.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/the-story-of-the-bible/" target="_blank" rel="noopener">
+        <h3>The Story of the Bible</h3>
+        <p>Creation → Fall → Israel → Jesus → Church → New Creation.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/how-to-read-gospel/" target="_blank" rel="noopener">
+        <h3>How to Read the Gospels</h3>
+        <p>Learn how Matthew, Mark, Luke, and John tell the story of Jesus.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/literary-styles/" target="_blank" rel="noopener">
+        <h3>Literary Styles</h3>
+        <p>Narrative, poetry, prophecy, and more.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/videos/how-to-read-the-bible/" target="_blank" rel="noopener">
+        <h3>How to Read the Bible Series</h3>
+        <p>A complete video series on reading Scripture well.</p>
+      </a>
+      <a class="card" href="https://bibleproject.com/explore/" target="_blank" rel="noopener">
+        <h3>Explore More →</h3>
+        <p>Videos, podcasts, reading plans, and study resources.</p>
+      </a>
+    </div>
+    <span class="fact">✦ <b>Fun fact:</b> BibleProject videos have been watched over 500 million times in 60+ languages.</span>
+  </section>
+
+
+
+  <!-- 14 TOPIC PICKER CTA -->
+  <section class="slide">
+    <div class="kicker">Your turn · Pick one</div>
+    <h2>What do <span class="accent">you</span> want to dig into next?</h2>
+    <p class="lead">Pick a topic that hits close to home. Find a verse or passage about it this week.</p>
+    <div class="topics">
+      <span class="chip">Anxiety &amp; worry</span>
+      <span class="chip">Identity</span>
+      <span class="chip">Friendship</span>
+      <span class="chip">Dating &amp; relationships</span>
+      <span class="chip">Family</span>
+      <span class="chip">Purpose</span>
+      <span class="chip">Doubt</span>
+      <span class="chip">Forgiveness</span>
+      <span class="chip">Prayer</span>
+      <span class="chip">Money</span>
+      <span class="chip">Social media</span>
+      <span class="chip">Suffering</span>
+      <span class="chip">Hope</span>
+      <span class="chip">Loneliness</span>
+      <span class="chip">Following Jesus</span>
+    </div>
+  </section>
+
+  <!-- 15 Final CTA -->
+  <section class="slide center">
+    <div class="kicker">Tonight's challenge</div>
+    <h1>Read one chapter.<br/>Come back next week.<br/><span class="accent">Share what stuck.</span></h1>
+    <p class="lead">Pick a topic. Find one verse or passage. Tell us next week what it said to you, in your own words. We'll learn from each other.</p>
+<a class="qr-card"
+   href="https://ov8.github.io/bible-study-youth/"
+   target="_blank"
+   rel="noopener">
+
+  <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fov8.github.io%2Fbible-study-youth%2F"
+    alt="Youth Fellowship Resources">
+
+  <span>
+    <strong>Keep learning this week.</strong>
+    Scan for slides, Bible study resources, and missed Youth Fellowship sessions.
+    <br><br>
+    Latest session: June 5, 2026 · Bible 101
+  </span>
+
+</a>
+  </section>
+
+</div>
+
+<div class="chrome">
+  <span><span class="dot"></span>Youth Fellowship</span>
+  <span id="counter">01 / 17</span>
+</div>
+
+<div class="nav">
+  <button id="prev" aria-label="Previous">‹</button>
+  <button id="next" aria-label="Next">›</button>
+</div>
+
+<script>
+  // Slide nav
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let i = 0;
+  const counterEl = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const pad = n => String(n).padStart(2,'0');
+  function go(n){
+    i = Math.max(0, Math.min(total-1, n));
+    slides.forEach((s,idx)=>s.classList.toggle('active', idx===i));
+    counterEl.textContent = `${pad(i+1)} / ${pad(total)}`;
+    progress.style.width = ((i+1)/total*100)+'%';
+    location.hash = i+1;
+  }
+  document.getElementById('next').onclick = ()=>go(i+1);
+  document.getElementById('prev').onclick = ()=>go(i-1);
+  document.addEventListener('keydown', e=>{
+    if(e.target.tagName==='INPUT') return;
+    if(['ArrowRight','PageDown'].includes(e.key)) go(i+1);
+    if(['ArrowLeft','PageUp'].includes(e.key)) go(i-1);
+    if(e.key==='Home') go(0);
+    if(e.key==='End') go(total-1);
+  });
+  let x0=null;
+  addEventListener('touchstart',e=>x0=e.touches[0].clientX);
+  addEventListener('touchend',e=>{
+    if(x0===null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx)>50) go(i + (dx<0?1:-1));
+    x0=null;
+  });
+  const start = parseInt(location.hash.slice(1))||1;
+  go(start-1);
+
+  // Timer
+  const timerEl = document.getElementById('timer');
+  let duration = 60, remaining = 60, interval = null;
+  function fmt(s){ const m = Math.floor(s/60); const r = s%60; return `${m}:${String(r).padStart(2,'0')}`; }
+  function render(){ timerEl.textContent = fmt(remaining); timerEl.classList.toggle('warn', remaining<=10); }
+  function setDur(d){ duration=d; remaining=d; stopT(); render(); }
+  function startT(){
+    if(interval) return;
+    interval = setInterval(()=>{
+      remaining--;
+      render();
+      if(remaining<=0){ stopT(); try{ new Audio('data:audio/wav;base64,UklGRhwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=').play(); }catch(e){} }
+    },1000);
+  }
+  function stopT(){ if(interval){clearInterval(interval); interval=null;} }
+  document.getElementById('t-start').onclick = ()=> interval ? stopT() : startT();
+  document.getElementById('t-reset').onclick = ()=>{ stopT(); remaining=duration; render(); };
+  document.getElementById('t-30').onclick = ()=> setDur(30);
+  document.getElementById('t-60').onclick = ()=> setDur(60);
+  document.getElementById('t-120').onclick = ()=> setDur(120);
+  render();
+
+  // Counter
+  const countEl = document.getElementById('count');
+  let count = 0;
+  const setCount = v => { count = Math.max(0, Math.min(66, v)); countEl.textContent = count; };
+  document.getElementById('c-plus').onclick = ()=> setCount(count+1);
+  document.getElementById('c-minus').onclick = ()=> setCount(count-1);
+  document.getElementById('c-reset').onclick = ()=> setCount(0);
+</script>
+</body>
+</html>
