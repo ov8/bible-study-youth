@@ -14,6 +14,42 @@
     .qr-card{display:flex;align-items:center;gap:1rem;background:#fff;border:1px solid #e8ecf1;border-radius:16px;padding:1rem;margin:1.5rem 0 2rem}
     .qr-card img{width:110px;height:110px;border-radius:10px;border:1px solid #e8ecf1;background:#fff}
     .empty{color:#64748b;font-style:italic}
+
+    .chrome{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 1.5rem;
+  font-size:.8rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#94a3b8;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  background:#3b82f6;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:.6rem;
+  vertical-align:middle;
+}
+
+.home-link{
+  color:#94a3b8;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.home-link:hover{
+  color:#3b82f6;
+}
+    
   </style>
 </head>
 <body>
@@ -119,5 +155,14 @@
         console.error(error);
       });
   </script>
+
+  <div class="chrome">
+  <a class="home-link" href="https://ov8.github.io/bible-study-youth/">
+    <span class="dot"></span>Youth Fellowship
+  </a>
+
+  <span>Archive</span>
+</div>
+  
 </body>
 </html>
