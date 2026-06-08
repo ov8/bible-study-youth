@@ -34,7 +34,12 @@
   .accent{color:var(--accent)}
   .fact{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1.05rem;background:#eef4ff;border:1px solid #dbe7ff;border-radius:999px;font-size:.95rem;color:#1e40af;margin-top:2rem;font-weight:500}
   .fact b{font-weight:600}
-  .qr-card{display:inline-flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1rem 1.25rem;margin-top:2rem;text-align:left;text-decoration:none;color:var(--ink)}
+  .qr-card{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:2rem;
+}
   .qr-card img{width:92px;height:92px;border-radius:10px;border:1px solid var(--line);background:#fff}
   .qr-card strong{display:block;font-size:1.05rem;margin-bottom:.25rem;color:var(--ink)}
   .qr-card span{display:block;font-size:.95rem;line-height:1.35;color:#475569;max-width:32ch}
@@ -311,7 +316,16 @@
     <h1>Watch one BibleProject video.<br/><span class="accent">Share one thing next class.</span></h1>
     <p class="lead">Choose any video. Come ready to share what you learned, what surprised you, or what confused you.</p>
     <blockquote style="margin-top:2rem;">"Trust in the Lord with all your heart, and do not lean on your own understanding."<cite>Proverbs 3:5</cite></blockquote>
-    <a class="qr-card" href="https://ov8.github.io/bible-study-youth/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fov8.github.io%2Fbible-study-youth%2F" alt="Youth Fellowship Resources"><span><strong>Keep learning this week.</strong>Scan for Youth Fellowship slides and past sessions.<br><br>Now posted: June 5 and June 12.</span></a>
+    <a class="qr-card"
+   href="https://ov8.github.io/bible-study-youth/"
+   target="_blank"
+   rel="noopener">
+
+  <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https%3A%2F%2Fov8.github.io%2Fbible-study-youth%2F"
+    alt="Youth Fellowship">
+
+</a>
   </section>
 </div>
 
