@@ -5,56 +5,119 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Youth Fellowship Bible Study</title>
   <style>
-    body{
-      font-family: system-ui, sans-serif;
-      background:#fafbfc;
-      color:#0f172a;
-      padding:40px;
-      line-height:1.6;
-    }
-    main{
-      max-width:760px;
-      margin:0 auto;
-    }
-    h1{
-      font-size:clamp(2rem,5vw,4rem);
-      line-height:1.05;
-    }
-    a{
-      display:block;
-      padding:18px 20px;
-      margin:14px 0;
-      background:#fff;
-      border:1px solid #e8ecf1;
-      border-radius:14px;
-      color:#0f172a;
-      text-decoration:none;
-    }
-    a:hover{
-      border-color:#3b82f6;
-    }
-    .date{
-      color:#64748b;
-      font-size:.9rem;
-    }
+    body{font-family:system-ui,sans-serif;background:#fafbfc;color:#0f172a;padding:40px;line-height:1.6}
+    main{max-width:760px;margin:0 auto}
+    h1{font-size:clamp(2rem,5vw,4rem);line-height:1.05}
+    .session{display:block;padding:18px 20px;margin:14px 0;background:#fff;border:1px solid #e8ecf1;border-radius:14px;color:#0f172a;text-decoration:none}
+    .session:hover{border-color:#3b82f6}
+    .date{color:#64748b;font-size:.9rem}
+    .qr-card{display:flex;align-items:center;gap:1rem;background:#fff;border:1px solid #e8ecf1;border-radius:16px;padding:1rem;margin:1.5rem 0 2rem}
+    .qr-card img{width:110px;height:110px;border-radius:10px;border:1px solid #e8ecf1;background:#fff}
+    .empty{color:#64748b;font-style:italic}
   </style>
 </head>
 <body>
   <main>
     <h1>Youth Fellowship Bible Study</h1>
-    <p>Slides, videos, resources, and past sessions.</p>
+    <p>Slides, videos, resources, and session archives.</p>
+
+    <div class="qr-card">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fov8.github.io%2Fbible-study-youth%2F" alt="QR code">
+      <div>
+        <strong>Scan for Youth Fellowship Bible Study</strong><br>
+        <span>Current sessions, past sessions, slides, videos, and resources.</span>
+      </div>
+    </div>
+
+    <h2>Current Sessions</h2>
+    <div id="current-sessions"><p class="empty">Loading sessions...</p></div>
 
     <h2>Past Sessions</h2>
-
-    <a href="sessions/2026-06-12.html">
-      <strong>Bible 101: God, Work, Money, and Purpose</strong><br>
-      <span class="date">Friday, June 12, 2026 · 7:30 pm</span>
-    </a>
-
-    <a href="sessions/2026-06-05.html">
-      <strong>Bible 101: What Is the Bible?</strong><br>
-      <span class="date">Friday, June 5, 2026 · 7:30 pm</span>
-    </a>
+    <div id="past-sessions"><p class="empty">Loading sessions...</p></div>
   </main>
+
+  <script>
+    const repoApi = "https://api.github.com/repos/ov8/bible-study-youth/contents/sessions";
+    const publicBase = "https://ov8.github.io/bible-study-youth/sessions/";
+
+    const sessionTitles = {
+      "2026-06-05": "Bible 101: What Is the Bible?",
+      "2026-06-12": "Bible 101: God, Work, Money, and Purpose"
+    };
+
+    const currentContainer = document.getElementById("current-sessions");
+    const pastContainer = document.getElementById("past-sessions");
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    function formatDate(dateString){
+      const date = new Date(dateString + "T19:30:00");
+      return date.toLocaleDateString("en-CA", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      }) + " · 7:30 pm";
+    }
+
+    function makeCard(session){
+      const a = document.createElement("a");
+      a.className = "session";
+      a.href = publicBase + session.fileName;
+      a.innerHTML = `
+        <strong>${session.title}</strong><br>
+        <span class="date">${formatDate(session.date)}</span>
+      `;
+      return a;
+    }
+
+    fetch(repoApi)
+      .then(response => response.json())
+      .then(files => {
+        const sessions = files
+          .filter(file => /^\d{4}-\d{2}-\d{2}\.html$/.test(file.name))
+          .map(file => {
+            const date = file.name.replace(".html", "");
+            return {
+              date,
+              fileName: file.name,
+              title: sessionTitles[date] || "Youth Fellowship Session"
+            };
+          })
+          .sort((a, b) => b.date.localeCompare(a.date));
+
+        currentContainer.innerHTML = "";
+        pastContainer.innerHTML = "";
+
+        let currentCount = 0;
+        let pastCount = 0;
+
+        sessions.forEach(session => {
+          const sessionDate = new Date(session.date + "T00:00:00");
+
+          if(sessionDate >= today){
+            currentContainer.appendChild(makeCard(session));
+            currentCount++;
+          } else {
+            pastContainer.appendChild(makeCard(session));
+            pastCount++;
+          }
+        });
+
+        if(currentCount === 0){
+          currentContainer.innerHTML = `<p class="empty">No current sessions posted yet.</p>`;
+        }
+
+        if(pastCount === 0){
+          pastContainer.innerHTML = `<p class="empty">No past sessions yet.</p>`;
+        }
+      })
+      .catch(error => {
+        currentContainer.innerHTML = `<p class="empty">Could not load sessions. Please refresh.</p>`;
+        pastContainer.innerHTML = "";
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
