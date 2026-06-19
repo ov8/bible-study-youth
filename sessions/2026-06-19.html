@@ -54,7 +54,9 @@
   .compact-board .prompt-card{padding:.65rem .75rem;border-radius:13px}
   .compact-board .prompt-card strong{font-size:.98rem;margin-bottom:.18rem}
   .compact-board .prompt-card span{font-size:.78rem;line-height:1.28}
-  .team-scorebar{display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:.8rem;max-width:540px;margin-top:1rem}
+  .team-scorebar{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(180px,1fr));gap:.8rem;max-width:540px;margin-top:1rem}
   .team-score{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem}
   .team-score label{display:block;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
   .team-score strong{font-family:'Fraunces',serif;font-size:2.2rem;color:var(--accent);line-height:1}
@@ -690,8 +692,8 @@ But Christians were never meant to follow Jesus completely alone.
     <p class="lead">Team 1 vs Team 2 (and maybe vs Team 3?). Use your phone to find one Bible verse about one real-life question.</p>
     <div class="team-scorebar">
       <div class="team-score"><label>Team 1</label><strong id="team1-score">0</strong><div class="team-controls"><button class="btn" id="team1-plus" type="button">+1</button><button class="btn ghost" id="team1-minus" type="button">−1</button></div></div>
-      <div class="team-score"><label>Team 2</label><strong id="team2-score">0</strong><div class="team-controls"><button class="btn" id="team2-plus" type="button">+2</button><button class="btn ghost" id="team2-minus" type="button">−2</button></div></div>
-      <div class="team-score"><label>Team 3</label><strong id="team3-score">0</strong><div class="team-controls"><button class="btn" id="team3-plus" type="button">+3</button><button class="btn ghost" id="team3-minus" type="button">−3</button></div></div>
+      <div class="team-score"><label>Team 2</label><strong id="team2-score">0</strong><div class="team-controls"><button class="btn" id="team2-plus" type="button">+1</button><button class="btn ghost" id="team2-minus" type="button">−1</button></div></div>
+      <div class="team-score"><label>Team 3</label><strong id="team3-score">0</strong><div class="team-controls"><button class="btn" id="team3-plus" type="button">+1</button><button class="btn ghost" id="team3-minus" type="button">−1</button></div></div>
     </div>
     <div class="button-row"><button class="btn ghost" id="team-reset" type="button">Reset team points</button></div>
     <button class="btn" id="steal-btn" type="button">
