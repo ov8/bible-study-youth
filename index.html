@@ -49,7 +49,15 @@
 <script>
 const repoApi="https://api.github.com/repos/ov8/bible-study-youth/contents/sessions";
 const publicBase="https://ov8.github.io/bible-study-youth/sessions/";
-const sessionTitles={"2026-06-05":"Bible 101: What Is the Bible?","2026-06-12":"Bible 101: God, Work, Money, and Purpose"};
+const sessionTitles = {
+
+  "2026-06-05": "Bible 101: What Is the Bible?",
+
+  "2026-06-12": "Bible 101: God, Work, Money, and Purpose",
+
+  "2026-06-19": "Bible 101: What Does a Christian Look Like?"
+
+};
 const currentContainer=document.getElementById("current-sessions");
 const pastContainer=document.getElementById("past-sessions");
 const today=new Date(); today.setHours(0,0,0,0);
