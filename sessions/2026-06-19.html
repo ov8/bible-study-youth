@@ -699,6 +699,8 @@ But Christians were never meant to follow Jesus completely alone.
     <button class="btn" id="steal-btn" type="button">
 🚨 STEAL!
 </button>
+
+    <div class="prompt-board compact-board">
     <div class="prompt-card"><strong>Christian</strong><span>What makes someone a Christian?</span></div>
 
 <div class="prompt-card"><strong>Following Jesus</strong><span>What does it mean to follow Jesus?</span></div>
@@ -720,7 +722,8 @@ But Christians were never meant to follow Jesus completely alone.
 
 <li><span><b>3 points:</b> give a real-life example.</span></li>
 
-<li><span><b>Steal:</b> another team can steal unanswered points.</span></li></ul>
+<li><span><b>Steal:</b> another team can steal unanswered points.</span></div></li>
+  </div></ul>
   </section>
 
 
@@ -879,6 +882,7 @@ const stealBtn = document.getElementById('steal-btn');
 
 if (stealBtn) {
   stealBtn.addEventListener('click', () => {
+    alert('STEAL!');
 
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
