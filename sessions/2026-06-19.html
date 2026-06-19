@@ -687,23 +687,38 @@ But Christians were never meant to follow Jesus completely alone.
   <section class="slide scroll-slide">
     <div class="kicker">Team activity · phones allowed</div>
     <h2>Phone Bible Hunt.</h2>
-    <p class="lead">Team 1 vs Team 2. Use your phone to find one Bible verse about one real-life question.</p>
+    <p class="lead">Team 1 vs Team 2 (and maybe vs Team 3?). Use your phone to find one Bible verse about one real-life question.</p>
     <div class="team-scorebar">
       <div class="team-score"><label>Team 1</label><strong id="team1-score">0</strong><div class="team-controls"><button class="btn" id="team1-plus" type="button">+1</button><button class="btn ghost" id="team1-minus" type="button">−1</button></div></div>
-      <div class="team-score"><label>Team 2</label><strong id="team2-score">0</strong><div class="team-controls"><button class="btn" id="team2-plus" type="button">+1</button><button class="btn ghost" id="team2-minus" type="button">−1</button></div></div>
+      <div class="team-score"><label>Team 2</label><strong id="team2-score">0</strong><div class="team-controls"><button class="btn" id="team2-plus" type="button">+2</button><button class="btn ghost" id="team2-minus" type="button">−2</button></div></div>
+      <div class="team-score"><label>Team 3</label><strong id="team3-score">0</strong><div class="team-controls"><button class="btn" id="team3-plus" type="button">+3</button><button class="btn ghost" id="team3-minus" type="button">−3</button></div></div>
     </div>
     <div class="button-row"><button class="btn ghost" id="team-reset" type="button">Reset team points</button></div>
-    <div class="prompt-board compact-board">
-      <div class="prompt-card"><strong>Work</strong><span>What does God say about how we work?</span></div>
-      <div class="prompt-card"><strong>Money</strong><span>How can money be used wisely?</span></div>
-      <div class="prompt-card"><strong>Gifts</strong><span>Why did God give people different abilities?</span></div>
-      <div class="prompt-card"><strong>Future</strong><span>How do we trust God when we do not know what is next?</span></div>
-      <div class="prompt-card"><strong>Wisdom</strong><span>What does wise decision-making look like?</span></div>
-      <div class="prompt-card"><strong>Generosity</strong><span>What does the Bible say about sharing with others?</span></div>
-      <div class="prompt-card"><strong>Purpose</strong><span>How can our lives point people toward God?</span></div>
-      <div class="prompt-card"><strong>Anxiety</strong><span>What does God say when we feel worried?</span></div>
-    </div>
-    <ul class="counted hunt-points"><li><span><b>1 point:</b> find a verse.</span></li><li><span><b>1 point:</b> explain it in your own words.</span></li><li><span><b>1 point:</b> give a real-life example.</span></li></ul>
+    <button class="btn" id="steal-btn" type="button">
+🚨 STEAL!
+</button>
+    <div class="prompt-card"><strong>Christian</strong><span>What makes someone a Christian?</span></div>
+
+<div class="prompt-card"><strong>Following Jesus</strong><span>What does it mean to follow Jesus?</span></div>
+
+<div class="prompt-card"><strong>Church</strong><span>Why do Christians gather together?</span></div>
+
+<div class="prompt-card"><strong>Speech</strong><span>What does the Bible say about our words?</span></div>
+
+<div class="prompt-card"><strong>Identity</strong><span>Who does God say we are?</span></div>
+
+<div class="prompt-card"><strong>Discipleship</strong><span>How do people grow in their faith?</span></div>
+
+<div class="prompt-card"><strong>Community</strong><span>How should Christians treat one another?</span></div>
+
+<div class="prompt-card"><strong>Transformation</strong><span>How does Jesus change people over time?</span></div>
+    <ul class="counted hunt-points"><li><span><b>1 point:</b> find a verse.</span></li>
+
+<li><span><b>2 points:</b> explain it in your own words.</span></li>
+
+<li><span><b>3 points:</b> give a real-life example.</span></li>
+
+<li><span><b>Steal:</b> another team can steal unanswered points.</span></li></ul>
   </section>
 
 
@@ -849,14 +864,42 @@ But Christians were never meant to follow Jesus completely alone.
   }
   const team1Counter = setupTeamCounter('team1');
   const team2Counter = setupTeamCounter('team2');
+  const team3Counter = setupTeamCounter('team3');
   const teamReset = document.getElementById('team-reset');
   if(teamReset){
     teamReset.addEventListener('click', () => {
       team1Counter.reset();
-      team2Counter.reset();
+team2Counter.reset();
+team3Counter.reset();
     });
   }
+const stealBtn = document.getElementById('steal-btn');
 
+if (stealBtn) {
+  stealBtn.addEventListener('click', () => {
+
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+
+      osc.start();
+
+      osc.stop(ctx.currentTime + 0.25);
+
+    } catch (e) {}
+
+  });
+}
 </script>
 </body>
 </html>
