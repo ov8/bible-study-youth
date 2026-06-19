@@ -11,7 +11,11 @@
   :root{--bg:#fafbfc;--surface:#ffffff;--line:#e8ecf1;--muted:#94a3b8;--ink:#0f172a;--accent:#3b82f6;}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  .deck{position:relative;height:100dvh;overflow:hidden}
+  .deck{
+  position:relative;
+  height:100dvh;
+  overflow:visible
+}
   .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(40px,7vw,120px);padding-bottom:6rem;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .5s ease, transform .5s ease;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;max-height:100dvh;}
   .slide.active{opacity:1;pointer-events:auto;transform:none}
   .kicker{font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;font-weight:500}
@@ -105,7 +109,12 @@
   .vote-chip.custom.has-votes .badge{right:1.55rem}
   .vote-chip.pop{transform:translateY(-2px);border-color:var(--accent);color:var(--accent)}
   .prompt-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:1.5rem;max-width:950px}
-  .prompt-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.2rem}
+  .prompt-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:1.2rem;
+}
   .prompt-card strong{display:block;font-family:'Fraunces',serif;font-size:1.25rem;margin-bottom:.4rem;color:var(--ink)}
   .prompt-card span{display:block;font-size:1rem;line-height:1.45;color:#475569}
   .dashboard-note{font-size:.92rem;color:#64748b;margin-top:.8rem;max-width:70ch}
@@ -695,14 +704,14 @@ But Christians were never meant to follow Jesus completely alone.
       <div class="team-score"><label>Team 2</label><strong id="team2-score">0</strong><div class="team-controls"><button class="btn" id="team2-plus" type="button">+1</button><button class="btn ghost" id="team2-minus" type="button">−1</button></div></div>
       <div class="team-score"><label>Team 3</label><strong id="team3-score">0</strong><div class="team-controls"><button class="btn" id="team3-plus" type="button">+1</button><button class="btn ghost" id="team3-minus" type="button">−1</button></div></div>
     </div>
-    <div class="button-row"><button class="btn ghost" id="team-reset" type="button">Reset team points</button></div>
-    <div style="margin-top:1rem; margin-bottom:1rem;">
-
+    <div class="button-row"><button class="btn ghost" id="team-reset" type="button">Reset team points</button>
   <button class="btn ghost" id="steal-btn" type="button">
 
     🚨 STEAL
 
-  </button>
+  </button></div>
+    <div style="margin-top:1rem; margin-bottom:1rem;">
+
 
 </div>
 
